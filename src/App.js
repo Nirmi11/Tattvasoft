@@ -1,6 +1,6 @@
 
 import './App.css';
-import {BrowserRouter,Routes,Route} from "react-router-dom"
+import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Register from './pages/Register';
 import Login from './pages/Login';
 // import Register from './pages/Register';
@@ -10,7 +10,9 @@ import Login from './pages/Login';
 function App() {
   return (
     <>
+    {/* day1 task */}
     <h1>hello world</h1>
+    {/* day 2 task */}
       {/* <Register/>
       <Login/>
       <Productlist/> */}
