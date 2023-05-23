@@ -1,31 +1,24 @@
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import {BrowserRouter,Routes,Route} from "react-router-dom";
-import Register from './pages/Register';
 import Login from './pages/Login';
-// import Register from './pages/Register';
-// import Login from './pages/Login';
-// import Productlist from './pages/Productlist';
+import ProductList from './pages/ProductList';
+import Register from './pages/Register';
+import ProductEdit from './pages/ProductEdit';
+import Cart from './pages/Cart';
 
 function App() {
   return (
     <>
-    {/* day1 task */}
-    <h1>hello world</h1>
-    {/* day 2 task */}
-      {/* <Register/>
-      <Login/>
-      <Productlist/> */}
-      <BrowserRouter>
-      <Routes>
-        <Route  path="/login" Component={Login}/>
-        <Route  path="/register" Component={Register}/>
-        <Route  path="/" Component={Login}/>
-
-        
-      </Routes>
-      
-      </BrowserRouter>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/login' Component={Login} />
+      <Route path='/register' Component={Register} />
+      <Route path='/product-list' Component={ProductList} />
+      <Route path='/product-edit' Component={ProductEdit} />
+      <Route path='/cart' Component={Cart} />
+      <Route path='/' Component={Login} />
+    </Routes>
+    </BrowserRouter>
     </>
   );
 }

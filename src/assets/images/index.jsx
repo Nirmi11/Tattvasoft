@@ -1,1 +1,1 @@
-export const addIcon=require('./img.jpg');
+export const addIcon = require('./tatvasoft.jpeg');
