@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../componenet/Header'
-import Footer from '../componenet/Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
- function Productlist() 
+ function ProductList() 
  {
   return (
     <div>
@@ -12,4 +12,4 @@ import Footer from '../componenet/Footer'
       </div>
   )
 }
-export default Productlist
+export default ProductList

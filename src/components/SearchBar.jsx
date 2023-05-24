@@ -5,7 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function FreeSolo() {
     return (
-      <Stack spacing={2} sx={{ width: 422 }}>
+      <Stack spacing={6} sx={{ width: 700 ,}}>
         <Autocomplete
           freeSolo
           id="free-solo-2-demo"
