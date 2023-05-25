@@ -5,11 +5,17 @@ import ProductList from './pages/ProductList';
 import Register from './pages/Register';
 import ProductEdit from './pages/ProductEdit';
 import Cart from './pages/Cart';
+import { ToastContainer } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
+  
+
 
 function App() {
   return (
     <>
+    <ToastContainer/>
     <BrowserRouter>
+    
     <Routes>
       <Route path='/login' Component={Login} />
       <Route path='/register' Component={Register} />
@@ -18,7 +24,10 @@ function App() {
       <Route path='/cart' Component={Cart} />
       <Route path='/' Component={Login} />
     </Routes>
+    
+
     </BrowserRouter>
+
     </>
   );
 }
