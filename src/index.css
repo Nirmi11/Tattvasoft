@@ -44,23 +44,23 @@ code {
 }
 .form-error
 {
-  font-size:"1.2rem";
+  font-size:"small";
   color: red;
-  margin-top: 1px;
+  margin-top: auto;
 }
 
 .footeralign{
-  height:103px;
+  height:125px;
   background-color: rgb(229, 235, 233);
-  margin-top: 72px;
+  margin-top: 31px;
 
 }
 .footerimg{
-  height: 60px;
-  width: 245px;
+  height:77px;
+  width: 243px;
   justify-content: center;
   margin-left: 860px;
-  margin-top: 39px;
+  margin-top: 30px;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-outlined{
@@ -90,8 +90,10 @@ h3{
   font-size: 20px;
   font-family: roboto;
   color: #414141;
-  margin-bottom: 20px;
+  margin-top: -19px;
+  
 }
+
 
 h6{
   font-size: 15px;
@@ -100,13 +102,16 @@ h6{
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
+.login
+{
+  margin-top: 20px;
+}
 .registerbtn{
   width: 134px;
   height: 50px;
 }
 #regbtn{
-    padding-top: 20px;
+    padding-top: 4px;
 }
 
 table{
