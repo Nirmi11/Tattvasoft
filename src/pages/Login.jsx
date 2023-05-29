@@ -124,7 +124,7 @@ function Login() {
     const initialValues = {
         email: "",
         password: "",
-        roleId: 0,
+        
     };
 
     const loginSchema = Yup.object().shape({
@@ -132,12 +132,16 @@ function Login() {
         password: Yup.string().min(6).required("Please enter password with min 6 char"),
     });
 
-    const onSubmit = (values) => {
+    const onSubmit = (values,action) => {
         // console.log(values);
         authService.login(values).then((res)=>{
-            toast.success("sucessfully registered");
+            toast.success("Sucessfully Login");
             console.log(res);
+        }).catch(()=>{
+            // console.log(error);
+            toast.error();
         })
+        action.resetForm();
     };
     return (
         <>
@@ -217,7 +221,7 @@ function Login() {
                                 validationSchema={loginSchema}
                                 onSubmit={onSubmit}
                             >
-                                {({ values, errors, touched, handleBlur, handleChange, handleSubmit, isValid }) => (
+                                {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                                     <form onSubmit={handleSubmit}>
                                         <Typography variant="body1" gutterBottom>
                                             Email Address *
@@ -249,7 +253,7 @@ function Login() {
                                             helperText={touched.password && errors.password}
                                             sx={{ width: "400px" }}
                                         />
-                                        <Grid item paddingTop="11px" marginBottom="30px" xs={6}>
+                                        <Grid item paddingTop="11px" marginBottom="65px" xs={6}>
                                             <Button
                                                 type="submit"
                                                 variant="contained"
@@ -273,7 +277,7 @@ function Login() {
 
                 </Grid>
             </Container >
-            <Footer />
+            <Footer style={{height:'1000px'}} />
         </>
     );
 }

@@ -1,34 +1,68 @@
 import React from "react";
-
-import Searchbar from "../components/SearchBar";
+import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar"
+import { Box, Button, Container, Divider, Stack } from "@mui/material";
 import { addIcon } from "../assets/images";
-import IconButton from '@mui/material/IconButton';
-
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { Button } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+const linkStyle = {
+    textDecoration: "none",
+};
 function Header() {
     return (
         <>
-            <div className="headeraligntop">
-                <img src={addIcon} className='headerimg' alt="" />
-                
-                     <Button href='/login' variant="text" color='error' className="link">Login</Button> 
-                     <Button href='/register' variant="text" color='error' className="link">Register</Button>
-                     <Button variant="outlined" className="link" href="/cart">
-                        <IconButton color="error">
-                                  <AddShoppingCartIcon/>
-                         </IconButton><span style={{color:"red" ,fontSize:"20px" ,paddingRight:"2px"}}>0</span>Cart</Button>
-                
-            </div>
-            <div className="headeralignbottom">
-                <div className="items">
-                    <Searchbar />
-                    <span style={{marginLeft:"20px",marginTop:"10px"}}>
-                    <Button  variant="contained" style={{ backgroundColor: "#80bf32",marginRight:"23px",height:"40px",paddingTop:"20px"}}>Search</Button>
-                    <Button  variant="contained"style={{height:"40px",paddingLeft:"33px"}} >Cancel</Button>
-                    </span>
-                </div>
-            </div>
+            
+            <div class="top-header"></div>
+            <Container maxWidth="lg">
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        height: "92px",
+                    }}
+                >
+                    <div className="header-img-wrapper"><img src={addIcon} className='headerimg' alt="" /></div>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <Stack
+                            direction="row"
+                            spacing={1}
+                            divider={<Divider orientation="vertical" flexItem />}
+                        >
+                            <Link to="/login" style={linkStyle}>
+                                <Button
+                                    variant="text"
+                                    color="error"
+                                    sx={{ textTransform: "capitalize" }}
+                                >
+                                    Login
+                                </Button>
+                            </Link>
+                            <Link to="/register" style={linkStyle}>
+                                <Button
+                                    variant="text"
+                                    color="error"
+                                    sx={{ textTransform: "capitalize" }}
+                                >
+                                    Register
+                                </Button>
+                            </Link>
+                        </Stack>
+                        <Link to="/cart" style={linkStyle}>
+                            <Button
+                                variant="outlined"
+                                color="error"
+                                sx={{ textTransform: "capitalize" }}
+                                startIcon={<ShoppingCartIcon style={{ color: "#f14d54" }} />}
+                            >
+                                <span style={{ color: "#f14d54", marginRight: "5px" }}>0</span>
+                                Cart
+                            </Button>
+                        </Link>
+                    </Box>
+                </Box>
+            </Container>
+            <SearchBar />
+
+
         </>
     )
 }
