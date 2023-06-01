@@ -1,6 +1,7 @@
 // import cartService from "";
 import { Role, RoutePaths } from "./enum";
 
+
 // const addToCart = async (book,id) => {
 //     return cartService
 //     .add({
@@ -63,14 +64,13 @@ const messages = {
             !navItem.access ||
             !!(navItem.access && navItem.access.includes(user.roleId))
         );
-    }
+    };
     return true;
-}
+};
 
 export default {
     hasAccess,
-
-    messages,
+     messages,
     LocalStorageKeys,
     NavigationItems,
 };

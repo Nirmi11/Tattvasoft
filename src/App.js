@@ -3,26 +3,27 @@ import './App.css';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthWrapper } from './context/auth.context';
 import Header from './components/Header';
 import { MainNavigation } from './components/MainNavigation';
 import Footer from './components/Footer';
+import { AuthWrapper } from './context/auth.context';
 
 
 
 function App() {
-  return (
+   return (
     <>
 
-      <ToastContainer />
+     
       <BrowserRouter>
         <AuthWrapper>
-          <Header />
+        <ToastContainer/>
+          <Header/>
           <main>
-            <MainNavigation />
+            <MainNavigation/>
           </main>
-          <Footer />
-        </AuthWrapper>
+          <Footer/>
+          </AuthWrapper>
       </BrowserRouter>
     </>
   );

@@ -7,9 +7,9 @@ import { RoutePaths } from "../utils/enum";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { addIcon } from "../assets/images";
 import { useAuthContext } from "../context/auth.context";
-import bookService from "../pages/service/book.service";
+import bookService from "../service/book.service";
 
-const HeaderExtra = () => {
+const Header= () => {
 
     // const classes = headerStyles();
     const authContext = useAuthContext();
@@ -22,9 +22,9 @@ const HeaderExtra = () => {
 
     // const navigate = useNavigate();
 
-    const openMenu = () => {
-        document.body.classList.toggle("open-menu");
-    };
+    // const openMenu = () => {
+    //     document.body.classList.toggle("open-menu");
+    // };
 
     const items = useMemo(() => {
         
@@ -32,7 +32,7 @@ const HeaderExtra = () => {
             (item) =>
                 !item.access.length || item.access.includes(authContext.user.roleId)
         );
-    }, []);
+    }, [authContext.user.roleId]);
 
     const logOut = () => {
         authContext.signOut();
@@ -208,4 +208,4 @@ const HeaderExtra = () => {
         </div>
     );
 };
-export default HeaderExtra;
+export default Header;

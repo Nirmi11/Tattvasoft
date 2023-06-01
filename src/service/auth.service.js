@@ -3,7 +3,8 @@ const ENDPOINT ="api/user";
 const login =async(data)=>{
     const url=`${ENDPOINT}/login`;
     return request.post(url,data).then((res)=>{
-        return res.data;
+       console.log(res);
+        return res;
     });
 };
 const create =async(data)=>{

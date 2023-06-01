@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Container from "@mui/material/Container";
 import Select from "@mui/material/Select";
 import {toast} from "react-toastify";
-import authService from "./service/auth.service";
+import authService from "../service/auth.service";
 // import userService from "./service/user.service";
 // import { useState } from "react";
 const initialValues = {

@@ -4,7 +4,7 @@ import shared from '../utils/shared';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { RoutePaths } from '../utils/enum';
 import { useContext } from 'react';
-import {toast}  from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const initialUserValues = {
     id: 0,
@@ -26,50 +26,46 @@ const authContext = createContext(initialState);
 export const AuthWrapper = ({ children }) => {
     const [user, _setUser] = useState(initialUserValues);
 
-    const {pathname} =useLocation();
+    const { pathname } = useLocation();
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const setUser = (user) => {
         localStorage.setItem(shared.LocalStorageKeys.USER, JSON.stringify(user));
         _setUser(user);
     };
 
-    const signOut=()=>{
+    const signOut = () => {
         localStorage.removeItem(shared.LocalStorageKeys.USER);
-    _setUser(initialUserValues);
-    navigate(RoutePaths.Login);
-    };
-
-    useEffect(() => {
-    const str=JSON.parse(localStorage.getItem(shared.LocalStorageKeys.USER)) ||
-    initialUserValues
-    if(str.id){
-        _setUser(str);
-    }
-    if(!str.id){
+        _setUser(initialUserValues);
         navigate(RoutePaths.Login);
-    }
-    
-      
+    };
+    useEffect(() => {
+        const str = JSON.parse(localStorage.getItem(shared.LocalStorageKeys.USER)) || initialUserValues;
+        if (str.id) {
+            _setUser(str);
+        }
+        if (!str.id) {
+            navigate(RoutePaths.Login);
+        }
     },[]);
-    
+
 
     useEffect(() => {
-    if(pathname === RoutePaths.Login && user.id) {
-        navigate(RoutePaths.BookListing);
-    }
-    if(!user.id) {
-       return;
-    }  
-    const access = shared.hasAccess(pathname, user);  
-    if(!access){
-        toast.warning("Sorry,you are not authorized to access this page");
-        navigate(RoutePaths.BookListing);
-        return;
-    }
-    // setAppInitilaize(true);
-},[pathname,user]);
+        if (pathname === RoutePaths.Login && user.id) {
+            navigate(RoutePaths.BookListing);
+        }
+        if (!user.id) {
+            return;
+        }
+        const access = shared.hasAccess(pathname, user);
+        if (!access) {
+            toast.warning("Sorry,you are not authorized to access this page");
+            navigate(RoutePaths.BookListing);
+            return;
+        }
+        // setAppInitilaize(true);
+    }, [pathname, user]);
     const value = {
         user,
         setUser,
