@@ -105,8 +105,7 @@
 
 
 import React from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+
 import { Button, List, ListItem, ListItemIcon, ListItemText, TextField } from "@mui/material";
 import Box from '@mui/material/Box';
 import { Breadcrumbs, Typography } from "@mui/material";
@@ -118,9 +117,13 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import authService from "./service/auth.service";
 import { toast } from "react-toastify";
+import { useAuthContext } from "../context/auth.context";
 
 
 function Login() {
+    // const navigate =useNavigate();
+    const authContext=useAuthContext();
+   
     const initialValues = {
         email: "",
         password: "",
@@ -136,7 +139,8 @@ function Login() {
         // console.log(values);
         authService.login(values).then((res)=>{
             toast.success("Sucessfully Login");
-            console.log(res);
+            authContext.setUser(res);
+              console.log(res);
         }).catch(()=>{
             // console.log(error);
             toast.error();
@@ -145,7 +149,7 @@ function Login() {
     };
     return (
         <>
-            <Header />
+            
             <Box display="flex" justifyContent="center" marginTop="50px">
                 <Breadcrumbs separator="›" aria-label="breadcrumb" className="breadcrump-wrapper" >
                     <Link to="/login" title="Home" style={{ textDecoration: "none", color: "#414141" }}>Home</Link>
@@ -277,7 +281,7 @@ function Login() {
 
                 </Grid>
             </Container >
-            <Footer style={{height:'1000px'}} />
+            
         </>
     );
 }

@@ -250,6 +250,11 @@ breadcrump-wrapper {
 
 .price {
   color: green;
+ 
+}
+.right-col
+{
+  margin-left: 192px;
 }
 .inner-block {
   padding: 10px;

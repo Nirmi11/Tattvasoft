@@ -1,33 +1,29 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login';
-import ProductList from './pages/ProductList';
-import Register from './pages/Register';
-import ProductEdit from './pages/ProductEdit';
-import Cart from './pages/Cart';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-  
+import { AuthWrapper } from './context/auth.context';
+import Header from './components/Header';
+import { MainNavigation } from './components/MainNavigation';
+import Footer from './components/Footer';
+
 
 
 function App() {
   return (
     <>
-    <ToastContainer/>
-    <BrowserRouter>
-    
-    <Routes>
-      <Route path='/login' Component={Login} />
-      <Route path='/register' Component={Register} />
-      <Route path='/product-list' Component={ProductList} />
-      <Route path='/product-edit' Component={ProductEdit} />
-      <Route path='/cart' Component={Cart} />
-      <Route path='/' Component={Login} />
-    </Routes>
-    
 
-    </BrowserRouter>
-
+      <ToastContainer />
+      <BrowserRouter>
+        <AuthWrapper>
+          <Header />
+          <main>
+            <MainNavigation />
+          </main>
+          <Footer />
+        </AuthWrapper>
+      </BrowserRouter>
     </>
   );
 }
