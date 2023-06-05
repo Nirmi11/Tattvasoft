@@ -1,32 +1,34 @@
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./utils/theme";
+import "./assets/css/style.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter } from "react-router-dom";
+import { MainNavigation } from "./components/MainNavigation";
+// import loader from "../src/assets/images/loader.gif";
+import { Footer } from "./components/footer";
+import { AuthWrapper } from "./context/auth";
+import Header from "./components/header";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Header from './components/Header';
-import { MainNavigation } from './components/MainNavigation';
-import Footer from './components/Footer';
-import { AuthWrapper } from './context/auth.context';
-
-
-
-function App() {
-   return (
-    <>
-
-     
-      <BrowserRouter>
-        <AuthWrapper>
-        <ToastContainer/>
-          <Header/>
+const App = () => {
+  return (
+    <BrowserRouter>
+      <AuthWrapper>
+        <ThemeProvider theme={theme}>
+          {/* <div className="loader-wrapper">
+            <img src={loader} alt="loader" />
+          </div> */}
+          <Header />
           <main>
-            <MainNavigation/>
+            <MainNavigation />
           </main>
-          <Footer/>
-          </AuthWrapper>
-      </BrowserRouter>
-    </>
+          <Footer />
+          <ToastContainer />
+        </ThemeProvider>
+      </AuthWrapper>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

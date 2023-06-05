@@ -1,17 +1,26 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Button, FormControl, Grid, InputLabel, MenuItem, Pagination, Select, TextField, Typography } from '@mui/material';
-// import { useAuthContext } from '../context/auth.context';
-import { defaultFilter } from '../constant/constant';
-import categoryService from '../service/category.service';
-import bookService from '../service/book.service';
-// import { toast } from 'react-toastify';
-// import shared from '../utils/shared';
+import React, { useEffect, useMemo, useState } from "react";
+import { productListingStyle } from "./style";
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { Pagination } from '@mui/material';
+import { useAuthContext } from "../../context/auth";
+import { materialCommonStyles } from "../../utils/materialCommonStyles";
+import { defaultFilter } from "../../constant/constant";
+import categoryService from "../../service/category.service";
+import bookService from "../../service/book.service";
 
-function BookListing() {
-//   const authContext = useAuthContext();
+export const BookListing = () => {
+  const authContext = useAuthContext();
   // const cartContext = useCartContext();
-  // const classes = productListingStyle();
-  // const materialClasses = materialCommonStyles();
+  const classes = productListingStyle();
+  const materialClasses = materialCommonStyles();
   const [bookResponse, setBookResponse] = useState({
     pageIndex: 0,
     pageSize: 10,
@@ -25,15 +34,15 @@ function BookListing() {
 
   useEffect(() => {
     getAllCategories();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (filters.keyword === "") delete filters.keyword;
-      searchAllBooks({...filters});
+      searchAllBooks({ ...filters });
     }, 500);
     return () => clearTimeout(timer);
-  },[filters]);
+  }, [filters]);
 
   const searchAllBooks = (filters) => {
     bookService.getAll(filters).then((res) => {
@@ -43,7 +52,7 @@ function BookListing() {
 
   const getAllCategories = async () => {
     await categoryService.getAll().then((res) => {
-      if(res) {
+      if (res) {
         setCategories(res);
       }
     });
@@ -62,42 +71,42 @@ function BookListing() {
     return [];
   }, [categories, bookResponse]);
 
-  // const addToCart = (book) => {
-  //   shared.addToCart(book, authContext.user.id).then((res) => {
-  //     if(res.error) {
-  //       toast.error(res.message);
-  //     } else {
-  //       toast.success(res.message);
-  //       cartContext.updateCart();
-  //     }
-  //   });
-  // };
+  //   const addToCart = (book) => {
+  //     Shared.addToCart(book, authContext.user.id).then((res) => {
+  //       if (res.error) {
+  //         toast.error(res.message);
+  //       } else {
+  //         toast.success(res.message);
+  //         cartContext.updateCart();
+  //       }
+  //     });
+  //   };
 
   const sortBooks = (e) => {
-    setSortBy(e.target.values);
+    setSortBy(e.target.value);
     const bookList = [...bookResponse.items];
 
-      bookList.sort((a,b) => {
-        if (a.name < b.name) {
-          return e.target.values === "a-z" ? -1:1;
-        }
-        if(a.name > b.name) {
-          return e.target.value === "a-z" ? 1:-1;
-        }
-        return 0;
-      });
-      setBookResponse({ ...bookResponse, items:bookList });
+    bookList.sort((a, b) => {
+      if (a.name < b.name) {
+        return e.target.value === "a-z" ? -1 : 1;
+      }
+      if (a.name > b.name) {
+        return e.target.value === "a-z" ? 1 : -1;
+      }
+      return 0;
+    });
+    setBookResponse({ ...bookResponse, items: bookList });
   };
 
   return (
-    // <div className={classes.productListWrapper}>
-    <div>
+    <div className={classes.productListWrapper}>
       <div className="container">
         <Typography variant="h1">Book Listing</Typography>
         <Grid container className="title-wrapper">
           <Grid item xs={6}>
             <Typography variant="h2">
-              Total <span> - {bookResponse.totalItems} items</span>
+              Total
+              <span> - {bookResponse.totalItems} items</span>
             </Typography>
           </Grid>
           <div className="dropdown-wrapper">
@@ -111,9 +120,8 @@ function BookListing() {
               onChange={(e) => {
                 setFilters({
                   ...filters,
-                  Keyword: e.target.value,
+                  keyword: e.target.value,
                   pageIndex: 1,
-
                 });
               }}
             />
@@ -121,19 +129,15 @@ function BookListing() {
           <FormControl className="dropdown-wrapper" variant="outlined">
             <InputLabel htmlFor="select">Sort By</InputLabel>
             <Select
-              // className={materialClasses.customSelect}
-              // MenuProps={{
-              //   classes: {
-              //     paper: materialClasses
-              //       .customSelect
-              //   },
-              // }}
+              className={materialClasses.customSelect}
+              MenuProps={{
+                classes: { paper: materialClasses.customSelect },
+              }}
               onChange={sortBooks}
               value={sortBy}
             >
               <MenuItem value="a-z">a - z</MenuItem>
               <MenuItem value="z-a">z - a</MenuItem>
-
             </Select>
           </FormControl>
         </Grid>
@@ -148,7 +152,6 @@ function BookListing() {
                       className="image"
                       alt="dummyimage"
                     />
-
                   </em>
                   <div className="content-wrapper">
                     <Typography variant="h3">{book.name}</Typography>
@@ -159,15 +162,12 @@ function BookListing() {
                         MRP &#8377; {book.price}
                       </span>
                     </p>
-                    <Button className="MuiButtonBase-root MuiButton-root MuiButton-contained btn pink-btn MuiButton-contained">
-                      <span
-                        className="MuiButton-label"
-                        onClick={() => { }}
-                      >
+                    <button className="MuiButtonBase-root MuiButton-root MuiButton-contained btn pink-btn MuiButton-containedPrimary MuiButton-disableElevation">
+                      <span className="MuiButton-label" onClick={() => {}}>
                         ADD TO CART
                       </span>
                       <span className="MuiTouchRipple-root"></span>
-                    </Button>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -185,7 +185,5 @@ function BookListing() {
         </div>
       </div>
     </div>
-// </div>
-)
+  );
 };
-export default BookListing;
