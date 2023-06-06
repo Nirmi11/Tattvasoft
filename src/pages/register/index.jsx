@@ -33,8 +33,8 @@ const Register = () => {
     confirmPassword: "",
   };
   const roleList = [
-    { id: 2, name: "buyer" },
-    { id: 3, name: "seller" },
+    { id: 3, name: "buyer" },
+    { id: 2, name: "seller" },
   ];
   // const [roleList, setRoleList] = useState([]);
 
@@ -68,9 +68,11 @@ const Register = () => {
   });
 
   const onSubmit = (data) => {
+    console.log(data);
     delete data.confirmPassword;
     authService.create(data).then((res) => {
       navigate("/login");
+    
       toast.success("Successfully registered");
     });
   };
